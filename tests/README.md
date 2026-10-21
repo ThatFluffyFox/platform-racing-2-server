@@ -5,16 +5,16 @@ the WebSocket codec (`multiplayer_server/WebSocket.php`) and the raw-vs-websocke
 transport handling in `PR2Client`, including the protocol sniffing that lets a
 single port serve both the legacy Flash/socket client and WebSocket clients.
 
-There is no local PHP requirement — the server targets PHP 7.3, so run the tests
-in the same image used to build it:
+There is no local PHP requirement. The test runner builds and caches a PHP 8.2.35
+image with the sockets extension, matching the multiplayer server's PHP version:
 
 ```sh
 # all tests
-docker run --rm -v "$PWD":/app -w /app php:7.3-cli php tests/run.php
+tests/run.sh
 
 # a single file
-docker run --rm -v "$PWD":/app -w /app php:7.3-cli php tests/WebSocketTest.php
-docker run --rm -v "$PWD":/app -w /app php:7.3-cli php tests/TransportIntegrationTest.php
+tests/run.sh tests/WebSocketTest.php
+tests/run.sh tests/TransportIntegrationTest.php
 ```
 
 The runner exits non-zero if any assertion fails.

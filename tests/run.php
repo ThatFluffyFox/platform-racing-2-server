@@ -2,7 +2,7 @@
 
 // Aggregate test runner. Includes every *Test.php file in this directory and
 // prints a single summary. Run with:
-//   docker run --rm -v "$PWD":/app -w /app php:7.3-cli php tests/run.php
+//   tests/run.sh
 
 require_once __DIR__ . '/bootstrap.php';
 
